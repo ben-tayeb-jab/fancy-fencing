@@ -477,10 +477,9 @@ def main(arg):
             if(draw_menu(arg,p)==False):
                 jeu=False
             else:
-
+                p.block=[]
                 #Choisis la scène que tu veux
                 p.read_scene(p.scene)
-
                 joueur_1 = joueur(1,p.pos_j1)
                 joueur_2 = joueur(2,p.pos_j2)
                 joueur_1.y= p.largeur-4
