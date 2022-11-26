@@ -5,7 +5,7 @@
 - Executer la commande "python3 console/main.py"
 
 ## Que peut-on faire dans le jeu ?
-- Se deplacer de gauche à droite
+- Se deplacer à gauche ou à droite
 - Attaquer/bloquer
 - Sauter
 - Choisir une scène
