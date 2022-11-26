@@ -72,7 +72,7 @@ def draw_menu(arg,plateau):
                         
                         if(key==curses.KEY_ENTER or key == 10):
                             if(current_pos_2==1):
-                                plateau.scene="defaut"
+                                plateau.scene="scene1.ffscene"
                                 afficher=False
                                 break
                             if(current_pos_2==2):
@@ -237,9 +237,8 @@ def main(arg):
     if(draw_menu(arg,p)==False):
         jeu=False
 
-    #Choisis la scène que tu veux
-    if(p.scene!="defaut"):
-        p.read_scene(p.scene)
+    #lire la scène choisis
+    p.read_scene(p.scene)
 
     joueur_1 = joueur(1,p.pos_j1)
     joueur_2 = joueur(2,p.pos_j2)
@@ -478,9 +477,9 @@ def main(arg):
             if(draw_menu(arg,p)==False):
                 jeu=False
             else:
+
                 #Choisis la scène que tu veux
-                if(p.scene!="defaut"):
-                    p.read_scene(p.scene)
+                p.read_scene(p.scene)
 
                 joueur_1 = joueur(1,p.pos_j1)
                 joueur_2 = joueur(2,p.pos_j2)
