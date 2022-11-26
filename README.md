@@ -4,10 +4,11 @@
 - Se positionner dans le repertoire fancy-fencing
 - Executer la commande "python3 console/main.py"
 
-## Que peut-on faire dans le jeu ?
+## Fonctionnalités du jeu :
 - Se deplacer à gauche ou à droite
 - Attaquer/bloquer
 - Sauter
 - Choisir une scène
 - Mettre le jeu en pause
-- Afficher les commandes
+- Afficher les commandes du jeu
+- Affichage du score
