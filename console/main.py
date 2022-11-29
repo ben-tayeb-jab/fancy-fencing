@@ -5,16 +5,18 @@ import plateau
 
 import time
 
-
+#ajout block affichage
 def add_block(arg,i,j):
     arg.addstr(i,j,"x")
 
+#Savoir si il y a un block
 def can_pass(pos_j1,block):
     for i in range(len(block)):
         if(pos_j1==block[i]):  
             return False
     return True
 
+#Savoir si le joueur est au dessus d'un bloc
 def no_block_under(pos_x,block):
     for i in range(len(block)):
         if(pos_x==block[i]):  
@@ -186,6 +188,7 @@ def eff_prev_pos(arg,j:joueur):
         arg.addstr(j.y,j.x," ")
         arg.addstr(j.y,j.x+1," ")
 
+#Affichage joueur
 def draw_joueur(arg,j1:joueur,j2:joueur,plateau):
 
     draw_plateau(arg,j1,j2,plateau)
@@ -224,9 +227,12 @@ def draw_joueur(arg,j1:joueur,j2:joueur,plateau):
 
 
 def main(arg):
+    #clock.tick(30)
+
     #enleve curseur
     curses.curs_set(0)
-    arg.nodelay(10)
+    
+    #arg.nodelay(1)
     arg.timeout(1)
 
     largeur, longueur = arg.getmaxyx()
@@ -261,12 +267,10 @@ def main(arg):
 
 
     start_time = time.time()
-    start_time_j2 = time.time()
 
     counter = 0
-    counter_2 = 0
 
-    x=joueur_1.mouv_speed
+    x=0.033
 
     while jeu:
         key = arg.getch()             
@@ -287,12 +291,12 @@ def main(arg):
         ###joueur2
         #droite
         if(key==curses.KEY_RIGHT and can_pass(joueur_2.x+1,p.block) and joueur_2.x+1<p.longueur-3):
+            start_time = time.time()
             eff_prev_pos(arg,joueur_2)
             if(j2_over_block):
                 joueur_2.y+=1 
                 j2_over_block=False 
             joueur_2.x+=1
-        
  
         if(key==curses.KEY_LEFT and  can_pass(joueur_2.x-1,p.block)and joueur_2.x-2>joueur_1.x):
             eff_prev_pos(arg,joueur_2)
@@ -306,13 +310,13 @@ def main(arg):
         if(key==ord('o')): 
             joueur_2.statut="attack"
             eff_prev_pos(arg,joueur_2)
-            
             attaque_j2=0
-            if(joueur_2.toucher(joueur_1)):
-                eff_prev_pos(arg,joueur_1)
-                eff_prev_pos(arg,joueur_2)                
-                
-                p.reset_pos(joueur_1,joueur_2)
+        
+        #attacking range
+        if(attaque_j2==500 and joueur_2.toucher(joueur_1)):
+            eff_prev_pos(arg,joueur_1)
+            eff_prev_pos(arg,joueur_2)
+            p.reset_pos(joueur_1,joueur_2)
                  
         
         #block
@@ -393,13 +397,12 @@ def main(arg):
         if(key==ord('z')): 
             joueur_1.statut="attack"
             eff_prev_pos(arg,joueur_1)            
-            
             attaque_j1=0
-            if(joueur_1.toucher(joueur_2)):
-                eff_prev_pos(arg,joueur_1)
-                eff_prev_pos(arg,joueur_2)
-
-                p.reset_pos(joueur_1,joueur_2)
+        
+        if(attaque_j1==500 and joueur_1.toucher(joueur_2)):
+            eff_prev_pos(arg,joueur_1)
+            eff_prev_pos(arg,joueur_2)
+            p.reset_pos(joueur_1,joueur_2)
                  
         #block
         if(key==ord('s')): 
@@ -491,7 +494,7 @@ def main(arg):
 
         counter+=1
         #https://stackoverflow.com/questions/43761004/fps-how-to-divide-count-by-time-function-to-determine-fps
-        if (time.time() - start_time) > x :
+        if (time.time() - start_time +joueur_2.mouv_speed) > x :
             counter = 0
             start_time = time.time()
             draw_joueur(arg,joueur_1,joueur_2,p)
