@@ -12,6 +12,7 @@ class plateau():
         self.largeur=x
         self.longueur=y
 
+    #Taille d'un fichier
     def len_of_file(self,file):
         cpt=0
         with open(file,'r') as f:
@@ -22,6 +23,7 @@ class plateau():
                 else:
                     cpt+=1 
 
+    # Lit un fichier ffscene 
     def read_scene(self,file):
         cpt=0
         coeff = self.longueur//self.len_of_file(file)
@@ -43,11 +45,7 @@ class plateau():
                         self.block.append(cpt*coeff)
                 cpt+=1
                     
-
-    def pos_joueurs(self,i):
-        self.pos_j1= i
-        self.pos_j2= self.longueur-i
-
+    #reset position des joueurs
     def reset_pos(self,j1:joueur,j2:joueur):
         j1.x=self.pos_j1
         j2.x=self.pos_j2
@@ -57,6 +55,7 @@ class plateau():
             return True
         return False
 
+    #Reset le jeu à la fin d'une partie
     def reset_jeu(self,j1:joueur,j2:joueur):
         self.reset_pos(j1,j2)
         j1.score=0

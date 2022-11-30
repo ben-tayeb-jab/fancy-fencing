@@ -238,7 +238,6 @@ def main(arg):
     largeur, longueur = arg.getmaxyx()
 
     p = plateau.plateau(largeur,longueur)
-    p.pos_joueurs(40)
 
     if(draw_menu(arg,p)==False):
         jeu=False
