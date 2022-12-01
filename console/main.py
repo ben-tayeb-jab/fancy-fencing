@@ -74,15 +74,15 @@ def draw_menu(arg,plateau):
                         
                         if(key==curses.KEY_ENTER or key == 10):
                             if(current_pos_2==1):
-                                plateau.scene="scene1.ffscene"
+                                plateau.scene="scenes/scene1.ffscene"
                                 afficher=False
                                 break
                             if(current_pos_2==2):
-                                plateau.scene="scene2.ffscene"
+                                plateau.scene="scenes/scene2.ffscene"
                                 afficher=False
                                 break
                             if(current_pos_2==3):
-                                plateau.scene="scene3.ffscene"
+                                plateau.scene="scenes/scene3.ffscene"
                                 afficher=False
                                 break
                 break
