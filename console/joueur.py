@@ -6,9 +6,8 @@ class joueur:
     #quel joueur 1 ou 2
     i:int
     #vitesse
-    v_attack = 500
-    dur_block = 1000
-    mouv_speed = 1000
+    v_attack = 250
+    dur_block = 500
     #score du joueur
     score = 0
 
@@ -27,9 +26,8 @@ class joueur:
             self.statut="rest"
 
     def toucher(self,j2):
-        if(j2.x-self.x<4):
+        if(abs(j2.x-self.x)<4):
             if(self.statut=="attack" and j2.statut!="block"):
-                self.score+=1
                 return True
             else:
                 return False

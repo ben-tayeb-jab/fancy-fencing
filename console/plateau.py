@@ -8,6 +8,7 @@ class plateau():
     pos_j2:int
     block = []
     scene = None
+    fps = 60
     def __init__(self,x,y):
         self.largeur=x
         self.longueur=y
